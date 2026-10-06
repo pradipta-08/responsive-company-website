@@ -1,0 +1,1051 @@
+/* =========================================
+   1. RESET & BASE STYLES
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--dark);
+    line-height: 1.65;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =========================================
+   2. DESIGN VARIABLES
+========================================= */
+
+:root {
+    --background: #FAF9F6;
+    --surface: #F2EFE9;
+    --surface-hover: #EAE6DC;
+    --card-bg: #FFFFFF;
+    
+    --dark: #171716;
+    --dark-surface: #222220;
+    --muted: #62605A;
+    --accent: #D95338;
+    --accent-hover: #BE452C;
+    --accent-soft: rgba(217, 83, 56, 0.08);
+    --white: #FFFFFF;
+    
+    --border: #E4E1D7;
+    --border-dark: #323230;
+
+    --max-width: 1180px;
+
+    --transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    --shadow-sm: 0 2px 8px rgba(23, 23, 22, 0.03);
+    --shadow-md: 0 10px 30px rgba(23, 23, 22, 0.06);
+    --shadow-lg: 0 20px 48px rgba(23, 23, 22, 0.09);
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+}
+
+
+/* =========================================
+   3. GLOBAL CONTAINER
+========================================= */
+
+.container {
+    width: min(100% - 48px, var(--max-width));
+    margin-inline: auto;
+}
+
+
+/* =========================================
+   4. TYPOGRAPHY
+========================================= */
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--dark);
+    line-height: 1.12;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+h1 {
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+}
+
+h2 {
+    font-size: clamp(2.1rem, 3.8vw, 3.2rem);
+}
+
+h3 {
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+p {
+    color: var(--muted);
+    font-size: 1rem;
+}
+
+
+/* =========================================
+   5. HEADER & NAVIGATION
+========================================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 20px 0;
+    background: rgba(250, 249, 246, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: padding var(--transition);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: var(--dark);
+    display: inline-flex;
+    align-items: center;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.main-navigation {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-link {
+    position: relative;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color var(--transition-fast);
+    padding: 6px 0;
+}
+
+.nav-link:hover {
+    color: var(--dark);
+}
+
+.nav-link.active {
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+.nav-contact {
+    padding: 9px 20px;
+    border: 1.5px solid var(--dark);
+    border-radius: 100px;
+    color: var(--dark);
+    font-weight: 600;
+    transition: all var(--transition);
+}
+
+.nav-contact:hover {
+    background: var(--dark);
+    color: var(--white);
+    transform: translateY(-1px);
+}
+
+.nav-contact.active::after {
+    display: none;
+}
+
+.menu-toggle {
+    display: none;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+}
+
+
+/* =========================================
+   6. HERO
+========================================= */
+
+.hero-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 90px 0 110px;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: 70px;
+}
+
+.eyebrow,
+.section-label {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.hero-description {
+    max-width: 540px;
+    margin-top: 26px;
+    font-size: 1.15rem;
+    line-height: 1.7;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 40px;
+}
+
+
+/* =========================================
+   7. BUTTONS
+========================================= */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 0 28px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid transparent;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.button-primary {
+    background: var(--dark);
+    color: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.button-primary:hover {
+    background: var(--accent);
+    box-shadow: var(--shadow-md);
+}
+
+.button-secondary {
+    border-color: var(--border-dark);
+    color: var(--dark);
+    background: transparent;
+}
+
+.button-secondary:hover {
+    background: var(--dark);
+    color: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.button-light {
+    background: var(--white);
+    color: var(--dark);
+    border-color: var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.button-light:hover {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* =========================================
+   8. HERO VISUAL (STUDIO SHOWCASE CARD)
+========================================= */
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.visual-card {
+    width: min(100%, 440px);
+    min-height: 460px;
+    padding: 32px;
+    background: var(--dark);
+    color: var(--white);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-dark);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.visual-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(217, 83, 56, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.visual-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.22);
+}
+
+.visual-card-top,
+.visual-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.visual-card-top span:first-child {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.visual-shape {
+    width: 180px;
+    height: 180px;
+    margin: 30px auto;
+    border-radius: 50%;
+    background: var(--accent);
+    position: relative;
+    box-shadow: 0 0 60px rgba(217, 83, 56, 0.35);
+}
+
+.visual-shape::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    border: 2px dashed rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================================
+   9. SECTION SPACING & HEADINGS
+========================================= */
+
+.section-padding {
+    padding: 110px 0;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-bottom: 56px;
+}
+
+.section-heading h2 {
+    max-width: 680px;
+}
+
+.section-heading .text-link {
+    margin-top: 0;
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   10. INTRODUCTION
+========================================= */
+
+.intro-section {
+    background: var(--surface);
+    border-y: 1px solid var(--border);
+}
+
+.intro-grid {
+    display: grid;
+    grid-template-columns: 0.35fr 1fr;
+    gap: 70px;
+}
+
+.intro-content {
+    max-width: 780px;
+}
+
+.intro-content h2 {
+    margin-bottom: 24px;
+}
+
+.intro-content p {
+    max-width: 660px;
+    font-size: 1.15rem;
+    line-height: 1.7;
+}
+
+.text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+    font-weight: 600;
+    color: var(--dark);
+    border-bottom: 1.5px solid var(--dark);
+    padding-bottom: 4px;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.text-link span {
+    transition: transform var(--transition-fast);
+}
+
+.text-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.text-link:hover span {
+    transform: translateX(4px);
+}
+
+
+/* =========================================
+   11. SERVICES PREVIEW & CARDS
+========================================= */
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.service-card {
+    min-height: 340px;
+    padding: 36px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(217, 83, 56, 0.35);
+    box-shadow: var(--shadow-md);
+}
+
+.service-number {
+    margin-bottom: auto;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+}
+
+.service-card h3 {
+    margin-bottom: 14px;
+}
+
+.service-card p {
+    margin-bottom: 28px;
+    font-size: 0.95rem;
+}
+
+.service-card a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark);
+    transition: color var(--transition-fast);
+}
+
+.service-card:hover a {
+    color: var(--accent);
+}
+
+
+/* =========================================
+   12. CTA SECTION
+========================================= */
+
+.sta-section,
+.cta-section {
+    background: var(--dark);
+    color: var(--white);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.sta-container,
+.cta-container {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.sta-container .section-label,
+.cta-container .section-label {
+    color: #F1A77C;
+}
+
+.sta-container h2,
+.cta-container h2 {
+    color: var(--white);
+    max-width: 780px;
+    margin: 0 auto 36px;
+}
+
+
+/* =========================================
+   13. FOOTER
+========================================= */
+
+.site-footer {
+    background: var(--dark);
+    color: var(--white);
+    border-top: 1px solid var(--border-dark);
+}
+
+.footer-main,
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    padding: 70px 0;
+}
+
+.footer-logo {
+    display: inline-block;
+    color: var(--white);
+}
+
+.footer-brand p {
+    max-width: 300px;
+    margin-top: 18px;
+    color: #A4A29B;
+    font-size: 0.95rem;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-column h3 {
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+    color: #A4A29B;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+}
+
+.footer-column a {
+    color: #E2DFD8;
+    font-size: 0.92rem;
+    transition: color var(--transition-fast);
+}
+
+.footer-column a:hover {
+    color: var(--accent);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px 0;
+    border-top: 1px solid var(--border-dark);
+}
+
+.footer-bottom p {
+    font-size: 0.82rem;
+    color: #8C8A84;
+}
+
+
+/* =========================================
+   14. ACCESSIBILITY & SKIP LINK
+========================================= */
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+.skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 9999;
+    padding: 10px 18px;
+    background: var(--dark);
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transform: translateY(-150%);
+    transition: transform var(--transition);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   15. ABOUT PAGE STYLES
+========================================= */
+
+.page-hero {
+    padding: 100px 0 110px;
+    border-bottom: 1px solid var(--border);
+}
+
+.page-hero h1 {
+    max-width: 1000px;
+}
+
+.page-hero h1 span {
+    color: var(--accent);
+}
+
+.page-hero-description {
+    max-width: 640px;
+    margin-top: 30px;
+    font-size: 1.15rem;
+    line-height: 1.7;
+}
+
+.story-section {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: 0.35fr 1fr;
+    gap: 70px;
+}
+
+.story-content h2 {
+    margin-bottom: 28px;
+}
+
+.story-content p {
+    max-width: 720px;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.value-card {
+    min-height: 290px;
+    padding: 32px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition);
+}
+
+.value-card:hover {
+    border-color: rgba(217, 83, 56, 0.35);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.value-number {
+    margin-bottom: auto;
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.value-card h3 {
+    margin-bottom: 12px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.team-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition);
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.team-image {
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.team-image-one { background: #3C4641; }
+.team-image-two { background: #8A6049; }
+.team-image-three { background: #46566B; }
+
+.team-info {
+    padding: 26px;
+}
+
+.team-role {
+    margin-bottom: 14px;
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.process-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+}
+
+.process-list {
+    border-top: 1px solid var(--border);
+}
+
+.process-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 30px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.process-number {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   16. SERVICES PAGE STYLES
+========================================= */
+
+.services-full-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.service-large-card {
+    min-height: 420px;
+    padding: 36px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition);
+}
+
+.service-large-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(217, 83, 56, 0.35);
+    box-shadow: var(--shadow-md);
+}
+
+.service-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.service-card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-top: 28px;
+}
+
+.service-card-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+}
+
+.service-card-content p {
+    margin-bottom: 24px;
+}
+
+.service-card-content ul {
+    list-style: none;
+    margin-top: auto;
+}
+
+.service-card-content li {
+    padding: 10px 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--dark);
+}
+
+.service-card-content li::before {
+    content: "—";
+    margin-right: 10px;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.approach-section {
+    background: var(--surface);
+    border-y: 1px solid var(--border);
+}
+
+.approach-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.approach-points > div {
+    padding-top: 24px;
+    border-top: 1.5px solid var(--border);
+}
+
+.approach-points span {
+    display: block;
+    margin-bottom: 20px;
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.service-process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.service-process-card {
+    padding: 30px;
+    min-height: 270px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition);
+}
+
+.service-process-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(217, 83, 56, 0.35);
+    box-shadow: var(--shadow-md);
+}
+
+.service-process-card > span {
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   17. CONTACT PAGE & FORM
+========================================= */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 75px;
+    align-items: start;
+}
+
+.contact-details {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.contact-detail-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.contact-form-wrapper {
+    background: var(--card-bg);
+    padding: 44px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    border: 1.5px solid var(--border);
+    background: var(--background);
+    color: var(--dark);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all var(--transition-fast);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+    background: var(--card-bg);
+}
+
+.form-group.has-error input,
+.form-group.has-error textarea {
+    border-color: #D93838;
+}
+
+.form-error {
+    min-height: 16px;
+    color: #D93838;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.form-success {
+    min-height: 20px;
+    color: #2D7A46;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
